@@ -1,0 +1,11 @@
+{
+    "Parameters": {
+        "InstanceName": "BastionHost",
+        "FreeTierImageId": "ami-0661cd3308ec33aaa",
+        "FreeTierInstanceType": "t2.micro",
+        "KeyName": "BastionHostPEM",
+        "PublicSubnetId": "subnet-081bab89672e05cd6",
+        "SSHSecurityGroupId": "sg-0360cf8c36ae8965d",
+        "Owner": "tg"
+    }
+}

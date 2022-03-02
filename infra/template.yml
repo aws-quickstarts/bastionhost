@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Cria uma instância ECS em uma subnet privada para ser usada como bastion host
+
+Parameters:
+
+  InstanceName:
+    Type: String
+    Default: BastionHost
+
+  FreeTierImageId:
+    Type: String
+    Default: ami-0661cd3308ec33aaa
+  
+  FreeTierInstanceType:
+    Type: String
+    Default: t2.micro
+  
+  KeyName:
+    Type: String
+    Default: BastionHostPEM
+  
+  PublicSubnetId:
+    Type: String
+    Default: subnet-081bab89672e05cd6
+
+  SSHSecurityGroupId:
+    Type: String
+    Default: sg-0360cf8c36ae8965d
+  
+  Owner:
+    Type: String
+    Default: tg
+
+Resources:
+
+  EC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref FreeTierImageId
+      InstanceType: !Ref FreeTierInstanceType
+      KeyName: !Ref KeyName
+      SubnetId: !Ref PublicSubnetId
+      SecurityGroupIds:
+        - !Ref SSHSecurityGroupId
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeType: gp2
+            DeleteOnTermination: true
+            VolumeSize: 8
+      Tags:
+        - Key: Name
+          Value: !Ref InstanceName
+        - Key: Owner
+          Value: !Ref Owner
