@@ -1,4 +1,4 @@
-# Bastion Host Node
+# Bastion Host
 
-Esse arquivo cria:
-- Uma instância ECS em uma subnet pública para ser usada como bastion host;
+This project creates:
+- ECS Instance prepared to be used as a bastion host
